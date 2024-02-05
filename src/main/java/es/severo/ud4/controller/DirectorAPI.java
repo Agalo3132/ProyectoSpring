@@ -3,6 +3,7 @@ package es.severo.ud4.controller;
 import es.severo.ud4.entity.Director;
 import es.severo.ud4.entity.Pelicula;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,5 +26,12 @@ public interface DirectorAPI {
             @ApiResponse(responseCode = "200", description = "Success", content = {@Content(schema = @Schema(implementation = Director.class))}),
             @ApiResponse(responseCode = "404", content = @Content(schema = @Schema()))
     })
+
+    @Parameter(
+            name = "dni",
+            description = "Id of the director",
+            example = "1"
+    )
+
     List<Pelicula> getTasks();
 }

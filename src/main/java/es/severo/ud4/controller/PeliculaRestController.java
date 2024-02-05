@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import es.severo.ud4.entity.Pelicula;
 import es.severo.ud4.entity.Resenya;
 import es.severo.ud4.service.PeliculaService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,22 +28,26 @@ public class PeliculaRestController {
     }
 
 
+    @Operation(summary = "Devuelve todas las peliculas existente")
     @GetMapping("/peliculas")
     public List<Pelicula> getPeliculas() {
         return peliculaService.findAll();
     }
 
+    @Operation(summary = "Crea una nueva pelicula")
     @PostMapping
     public ResponseEntity<Pelicula> newPelicula(@RequestBody Pelicula pelicula) {
         Pelicula newPelicula = peliculaService.create(pelicula);
         return new ResponseEntity<>(newPelicula, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Devuelve las peliculas que duran más que una hora existente")
     @GetMapping("/peliculas/hora")
     public List<Pelicula> getPeliculaMayorALaHora() {
         return peliculaService.getPeliculasMasDe1Hora();
     }
 
+    @Operation(summary = "Devuelve la primera pelicula por el titulo existente")
     @GetMapping("/first")
     public Pelicula getFirstOrderByTituloDesc() {
         return peliculaService.getFirstOrderTituloDesc();
@@ -56,6 +61,7 @@ public class PeliculaRestController {
         }
     }
 
+    @Operation(summary = "Crea un json de las peliculas")
     @GetMapping("/json")
     public String getJson() {
         List<Pelicula> peliculas = peliculaService.findAll();

@@ -2,6 +2,7 @@ package es.severo.ud4.controller;
 
 import es.severo.ud4.entity.Pelicula;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,5 +24,6 @@ public interface PeliculaAPI {
             @ApiResponse(responseCode = "200", description = "Success", content = {@Content(schema = @Schema(implementation = Pelicula.class))}),
             @ApiResponse(responseCode = "404", content = @Content(schema = @Schema()))
     })
+
     List<Pelicula> getTasks();
 }

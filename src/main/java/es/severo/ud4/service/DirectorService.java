@@ -2,6 +2,7 @@ package es.severo.ud4.service;
 
 import es.severo.ud4.entity.Director;
 import es.severo.ud4.entity.Pelicula;
+import es.severo.ud4.entity.Resenya;
 import es.severo.ud4.repository.DirectorRepository;
 import es.severo.ud4.repository.PeliculaRepository;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,10 @@ public class DirectorService {
     public Director findById(Long id) {
         Optional<Director> optional = directorRepository.findById(id);
         return optional.orElse(null);
+    }
+
+    public Director cambiarDirector(Director director) {
+        return directorRepository.save(director);
     }
 
 }
